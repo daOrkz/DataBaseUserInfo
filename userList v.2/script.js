@@ -2,10 +2,27 @@
 const usersList = document.querySelector('.users')
 const userInfo = document.querySelector('.user-info')
 
+// usersList.addEventListener('click', getUserInfo)
 usersList.addEventListener('click', getUserInfo)
 
-function getUsersFromDb() {
-  const url = 'https://jsonplaceholder.typicode.com/users'
+// function getUsersFromDb() {
+//   const url = 'https://jsonplaceholder.typicode.com/users'
+
+//   const xhr = new XMLHttpRequest()
+//   xhr.open('GET', url)
+
+//   xhr.onload = () => {
+//     const response = xhr.response
+//     const users = JSON.parse(response)  // [{…}, {…}]
+
+//     renderUsers(users)
+//   }
+  
+//   xhr.send()
+// }
+
+function getDataBase(cb, id = '') {
+  const url = 'https://jsonplaceholder.typicode.com/users/' + id
 
   const xhr = new XMLHttpRequest()
   xhr.open('GET', url)
@@ -14,27 +31,27 @@ function getUsersFromDb() {
     const response = xhr.response
     const users = JSON.parse(response)  // [{…}, {…}]
 
-    renderUsers(users)
+    cb(users)
   }
   
   xhr.send()
 }
 
-function getUserInfoFromDb(userId) {
-  const url = 'https://jsonplaceholder.typicode.com/users/' + userId
+// function getUserInfoFromDb(userId) {
+//   const url = 'https://jsonplaceholder.typicode.com/users/' + userId
 
-  const xhr = new XMLHttpRequest()
-  xhr.open('GET', url)
+//   const xhr = new XMLHttpRequest()
+//   xhr.open('GET', url)
 
-  xhr.onload = () => {
-    const response = xhr.response
-    const user = JSON.parse(response)  // {…}
+//   xhr.onload = () => {
+//     const response = xhr.response
+//     const user = JSON.parse(response)  // {…}
 
-    renderUsersInfo(user)
-  }
+//     renderUsersInfo(user)
+//   }
   
-  xhr.send()
-}
+//   xhr.send()
+// }
 
 function renderUsers(users) {
   let fragment = ''
@@ -55,7 +72,8 @@ function renderUsersInfo(user) {
 function getUserInfo(e) {
   const userId = e.target.dataset.userId
 
-  getUserInfoFromDb(userId)
+  // getUserInfoFromDb(userId)
+  getDataBase(renderUsersInfo, userId)
 
 }
 
@@ -73,5 +91,6 @@ function createUserNameTemplate(user) {
   `
 }
 
-getUsersFromDb()
+// getUsersFromDb()
 
+getDataBase(renderUsers)

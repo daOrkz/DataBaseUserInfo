@@ -1,0 +1,42 @@
+
+body {
+  background-color: rgb(112, 109, 255);
+}
+
+.conteiner {
+  width: 1200px;
+  margin: 50px auto;
+  display: flex;
+  justify-content: space-between;
+
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+.left {
+  margin-left: 20px;
+}
+
+.right {
+  margin-right: 20px;
+}
+
+.user-list {
+  margin-bottom: 20px;
+  font-size: 16px;  
+}
+
+.post {
+  width: 800px;
+  border: 1px solid black;
+  border-radius: 20px;
+  background-color: rgb(58, 17, 245);
+  margin-bottom: 20px;
+}
+
+.title {
+  margin: 20px;
+}
+.text {
+  margin: 20px;
+}
